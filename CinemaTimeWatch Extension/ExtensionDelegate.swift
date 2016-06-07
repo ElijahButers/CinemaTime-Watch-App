@@ -25,7 +25,7 @@ import WatchConnectivity
 
 let NotificationPurchasedMovieOnWatch = "PurchasedMovieOnWatch"
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   
   lazy var documentsDirectory: String = {
       return NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first!
