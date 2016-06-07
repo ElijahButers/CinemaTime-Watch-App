@@ -56,5 +56,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   
   private func setupWatchConnectivity() {
     // TODO: Update to set up watch connectivity
+    if WCSession.isSupported() {
+      let session = WCSession.defaultSession()
+      session.delegate = self
+      session.activateSession()
+    }
   }
 }
