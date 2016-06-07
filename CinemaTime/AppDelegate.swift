@@ -21,6 +21,7 @@
 */
 
 import UIKit
+import WatchConnectivity
 
 let NotificationPurchasedMovieOnPhone = "PurchasedMovieOnPhone"
 let NotificaitonPurchasedMovieOnWatch = "PurchasedMovieOnWatch"
