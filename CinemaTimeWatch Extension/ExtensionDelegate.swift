@@ -21,6 +21,7 @@
 */
 
 import WatchKit
+import WatchConnectivity
 
 let NotificationPurchasedMovieOnWatch = "PurchasedMovieOnWatch"
 
