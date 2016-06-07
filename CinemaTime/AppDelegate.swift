@@ -27,7 +27,7 @@ let NotificationPurchasedMovieOnPhone = "PurchasedMovieOnPhone"
 let NotificaitonPurchasedMovieOnWatch = "PurchasedMovieOnWatch"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
   
   var window: UIWindow?
   lazy var notificationCenter: NSNotificationCenter = {
