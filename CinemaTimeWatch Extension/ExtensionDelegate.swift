@@ -50,6 +50,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
   
   private func sendPurchasedMoviesToPhone(notification:NSNotification) {
     // TODO: Update to send purchased movies to phone
+    
+    if WCSession.isSupported() {
+      
+      if let movies = TicketOffice.sharedInstance.purchasedMovieTicketIDs()  {
+        do {
+          let dictionary = ["movies": movies]
+          try WCSession.defaultSession().updateApplicationContext(dictionary)
+        } catch {
+                print("ERROR: \(error)")
+              }
+          }
+        }
   }
   
   // MARK: - Watch Connectivity
