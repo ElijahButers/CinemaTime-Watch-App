@@ -126,5 +126,13 @@ class MovieDetailViewController: UIViewController {
   
   private func sendRatingToWatch(rating: String) {
     // TODO: Update to send movie rating to the watch
+    if WCSession.isSupported() {
+      let session = WCSession.defaultSession()
+      if session.watchAppInstalled {
+        
+        let userInfo = ["movie_id":movie.id, "rating":rating]
+        session.transferUserInfo(userInfo)
+      }
+    }
   }
 }
