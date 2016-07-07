@@ -66,6 +66,10 @@ class MovieRatingController: WKInterfaceController {
   
   private func sendRatingToPhone(rating: String) {
     // TODO: Update to send movie ratings to phone
+    if WCSession.isSupported() {
+      let userInfo = ["movie_id":movie.id, "rating":rating]
+      WCSession.defaultSession().transferUserInfo(userInfo)
+    }
   }
 
 }
