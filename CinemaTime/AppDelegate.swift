@@ -102,4 +102,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     }
   }
   }
+  
+  func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+    
+    if let movieID = userInfo["movie_id"] as? String,
+      let rating = userInfo["rating"] as? String {
+      TicketOffice.sharedInstance.rateMovie(movieID, rating: rating)
+    }
+  }
 }
