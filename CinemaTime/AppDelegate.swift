@@ -110,4 +110,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
       TicketOffice.sharedInstance.rateMovie(movieID, rating: rating)
     }
   }
+  
+  func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+    
+    if let movieID = message["movie_id"] as? String {
+      if let movieTicket = QRCode(movieID) {
+        let reply = ["movie_id":movieID, "movie_ticket":movieTicket.PNGData]
+        replyHandler(reply)
+      }
+    }
+  }
 }
