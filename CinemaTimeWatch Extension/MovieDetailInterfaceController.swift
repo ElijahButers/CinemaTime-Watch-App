@@ -94,6 +94,25 @@ class MovieDetailInterfaceController: WKInterfaceController {
   
   private func requestTicketForPurchasedMovie(movie: Movie) {
     // TODO: Update to request movie ticket image from phone
+    if WCSession.isSupported() {
+      
+      let session = WCSession.defaultSession()
+      if session.reachable {
+        let message = ["movie_id":movie.id]
+        session.sendMessage(message, replyHandler: { (reply: [String: AnyObject]) -> Void in
+          
+          if let movieID = reply["movie_id"] as? String,
+            let movieTicket = reply["movie_ticket"] as? NSData
+            where movieID == self.movie.id {
+              self.saveMovieTicketAndUpdateDisplay(movieTicket)
+          }
+          }, errorHandler: { (error: NSError) -> Void in
+            print("ERROR: \(error.localizedDescription)")
+        })
+      } else {
+        self.showReachabilityError()
+      }
+    }
   }
   
   private func saveMovieTicketAndUpdateDisplay(movieTicket: NSData) {
